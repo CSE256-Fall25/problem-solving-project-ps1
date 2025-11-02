@@ -7,8 +7,8 @@ show_starter_dialogs = false // set this to "false" to disable the survey and 3-
 // Make permissions dialog:
 perm_dialog = define_new_dialog('permdialog', title='Permissions', options = {
     // The following are standard jquery-ui options. See https://jqueryui.com/dialog/
-    height: 500,
-    width: 400,
+    height: 400,
+    width: 700,
     buttons: {
         OK:{
             text: "OK",
@@ -145,13 +145,42 @@ perm_remove_user_button.click(function(){
 
 
 // --- Append all the elements to the permissions dialog in the right order: --- 
+// perm_dialog.append(obj_name_div)
+// perm_dialog.append($('<div id="permissions_user_title">Group or user names:</div>'))
+// perm_dialog.append(file_permission_users)
+// perm_dialog.append(perm_add_user_select)
+// perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
+// perm_dialog.append(grouped_permissions)
+// perm_dialog.append(advanced_expl_div)
+
+// NEW PERMISSIONS DIALOG LAYOUT !!!
+let perm_main_container = $('<div id="perm_main_container"></div>')
+
+// left panel
+let left_panel = $('<div id="perm_left_panel"></div>')
+left_panel.append('<div id="permissions_user_title">Group or user names:</div>')
+left_panel.append(file_permission_users)
+
+// user add/remove buttons
+let user_button_container = $('<div id="perm_user_buttons"></div>')
+user_button_container.append(perm_add_user_select)
+user_button_container.append(perm_remove_user_button)
+left_panel.append(user_button_container)
+perm_add_user_select.find('button').text('+')
+perm_remove_user_button.text('–')
+
+// right panel
+let right_panel = $('<div id="perm_right_panel"></div>')
+right_panel.append(grouped_permissions)
+right_panel.append(advanced_expl_div)
+
+// Combine panels
+perm_main_container.append(left_panel)
+perm_main_container.append(right_panel)
+
+// final assembly
 perm_dialog.append(obj_name_div)
-perm_dialog.append($('<div id="permissions_user_title">Group or user names:</div>'))
-perm_dialog.append(file_permission_users)
-perm_dialog.append(perm_add_user_select)
-perm_add_user_select.append(perm_remove_user_button) // Cheating a bit again - add the remove button the the 'add user select' div, just so it shows up on the same line.
-perm_dialog.append(grouped_permissions)
-perm_dialog.append(advanced_expl_div)
+perm_dialog.append(perm_main_container)
 
 // --- Additional logic for reloading contents when needed: ---
 //Define an observer which will propagate perm_dialog's filepath attribute to all the relevant elements, whenever it changes:
