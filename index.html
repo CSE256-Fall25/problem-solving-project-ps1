@@ -145,9 +145,9 @@
                             </div>
                             <button id="adv_perm_edit" class="ui-button ui-widget ui-corner-all">Edit...</button>
                             <div id="adv_perm_inheritance_div">
-                                <input type="checkbox" id="adv_perm_inheritance" name="inherit">
-                                <label for="adv_perm_inheritance" id="adv_perm_inheritance_label">Inherit
-                                    permissions from object's parent (uncheck to unlock grey boxes)</label>
+                                <button id="adv_perm_inheritance_button" class="ui-button ui-widget ui-corner-all">
+                                    Change inheritance settings
+                                </button>
                             </div>
                             <div id="adv_perm_replace_child_div">
                                 <button id="adv_perm_replace_child_button" class="ui-button ui-widget ui-corner-all">
@@ -163,9 +163,13 @@
                             <div id="adv_owner_current_owner_text">Current owner:</div>
                             <div id="adv_owner_current_owner" class="ui-widget-content section"></div>
                             <div id="adv_owner_change_owner_text">Change owner to:</div>
-                            <div id="adv_owner_user_list"></div>
-                            <button id="adv_owner_change_button" class="ui-button ui-widget ui-corner-all">Change
-                                Owner</button>
+                            <div id="adv_owner_user_section">
+                                <div id="adv_owner_user_list"></div>
+                                <button id="adv_owner_change_button" class="ui-button ui-widget ui-corner-all">
+                                    Change Owner
+                                </button>
+                            </div>
+
                         </div>
                         <div id="adv_effective_tab">
                             <div id="adv_effective_object_name" class="section">

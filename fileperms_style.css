@@ -204,9 +204,9 @@
 
 
 /* reset button */
-#adv_perm_replace_child_div {
+/* #adv_perm_replace_child_div {
   margin-top: 10px;
-}
+} */
 
 #adv_perm_replace_child_button {
   padding: 6px 14px;
@@ -220,6 +220,22 @@
   background-color: #f57c00;
 }
 
+/* inheritance button */
+/* #adv_perm_inheritance_div {
+  margin-top: 10px;
+} */
+
+#adv_perm_inheritance_button {
+  padding: 6px 14px;
+  margin-top: 8px;
+  background-color: #7e57c2;
+  color: white;
+  cursor: pointer;
+}
+
+#adv_perm_inheritance_button:hover {
+  background-color: #6a45ad;
+}
 
 /* effective permissions tab layout */
 #adv_effective_main_container {
@@ -283,4 +299,70 @@
   padding: 4px;
   border: 1px solid #ddd;
   border-radius: 4px;
+}
+
+/* OWNER TAB LAYOUT */
+#adv_owner_tab {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    padding: 6px 4px;
+    font-size: 14px;
+}
+
+/* Explanation + object name */
+#adv_owner_explanation,
+#adv_owner_object_name {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 4px;
+    margin-bottom: 2px;
+    font-weight: 500;
+}
+
+/* Current owner box */
+#adv_owner_current_owner {
+    padding: 6px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fafafa;
+    min-width: 200px;
+}
+
+/* User section: list + button share a fixed area */
+#adv_owner_user_section {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-height: 220px;        /* stays within dialog */
+}
+
+/* Scrollable list */
+#adv_owner_user_list {
+    flex: 1;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fcfcfc;
+    padding: 4px;
+}
+
+/* Optional: nicer list item spacing */
+#adv_owner_user_list .ui-widget-content {
+    padding: 4px;
+    border-radius: 3px;
+    margin-bottom: 3px;
+}
+
+/* Change Owner button pinned just under the list */
+#adv_owner_change_button {
+    align-self: flex-end;
+    padding: 6px 12px;
+    font-weight: 500;
+    background-color: #1a73e8;
+    color: white;
+    border: none;
+}
+
+#adv_owner_change_button:hover {
+    background-color: #1669c1;
 }

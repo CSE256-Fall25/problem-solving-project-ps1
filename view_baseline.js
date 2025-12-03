@@ -348,7 +348,7 @@ $( "#advtabs" ).tabs({
 let adv_contents = $(`#advdialog`).dialog({
     position: { my: "top", at: "top", of: $('#html-loc') },
     width: 700,
-    height: 450,
+    height: 470,
     modal: true,
     autoOpen: false,
     appendTo: "#html-loc",
@@ -370,66 +370,54 @@ $("#adv_effective_user_select").click(function(event){
 })
 
 // listen for changes to inheritance checkbox:
-$('#adv_perm_inheritance').change(function(){
-    let filepath = $('#advdialog').attr('filepath')
-    let file_obj = path_to_file[filepath]
-    if( $('#adv_perm_inheritance').prop('checked')) {
-        // has just been turned on
-        file_obj.using_permission_inheritance = true
-        emitState()
-        open_advanced_dialog(filepath) // reload/reopen dialog
-        perm_dialog.attr('filepath', filepath) // force reload 'permissions' dialog
-    }
-    else {
-        // has just been turned off - pop up dialog with add/remove/cancel
-        $(`<div id="add_remove_cancel" title="Security">
-            Warning: if you proceed, inheritable permissions will no longer propagate to this object.<br/>
-            - Click Add to convert and add inherited parent permissions as explicit permissions on this object<br/>
-            - Click Remove to remove inherited parent permissions from this object<br/>
-            - Click Cancel if you do not want to modify inheritance settings at this time.<br/>
-        </div>`).dialog({ // TODO: don't create this dialog on the fly
-            modal: true,
-            width: 400,
-            appendTo: "#html-loc",
-            position: { my: "top", at: "top", of: $('#html-loc') },
-            buttons: {
-                Add: {
-                    text: "Add",
-                    id: "adv-inheritance-add-button",
-                    click: function() {
-                        let filepath = $('#advdialog').attr('filepath')
-                        let file_obj = path_to_file[filepath]
-                        convert_parent_permissions(file_obj)
-                        open_advanced_dialog(filepath) // reload/reopen 'advanced' dialog
-                        perm_dialog.attr('filepath', filepath) // force reload 'permissions' dialog
-                        $( this ).dialog( "close" );
-                    },
-                },
-                Remove: {
-                    text: "Remove",
-                    id: "adv-inheritance-remove-button",
-                    click: function() {
-                        let filepath = $('#advdialog').attr('filepath')
-                        let file_obj = path_to_file[filepath]
-                        file_obj.using_permission_inheritance = false
-                        emitState()
-                        open_advanced_dialog(filepath) // reload/reopen 'advanced' dialog
-                        perm_dialog.attr('filepath', filepath) // force reload 'permissions' dialog
-                        $( this ).dialog( "close" );
-                    },
-                },
-                Cancel: {
-                    text: "Cancel",
-                    id: "adv-inheritance-cancel-button",
-                    click: function() {
-                        $('#adv_perm_inheritance').prop('checked', true) // undo unchecking
-                        $( this ).dialog( "close" );
-                    },
-                },
+// CHANGED: listen for clicks on the inheritance button:
+$('#adv_perm_inheritance_button').click(function () {
+    let filepath = $('#advdialog').attr('filepath');
+    let file_obj = path_to_file[filepath];
+
+    $(`<div id="add_remove_cancel" title="Security">
+        Warning: if you proceed, inheritable permissions will no longer propagate to this object.<br/>
+        - Click Add to convert and add inherited parent permissions as explicit permissions on this object<br/>
+        - Click Remove to remove inherited parent permissions from this object<br/>
+        - Click Cancel if you do not want to modify inheritance settings at this time.<br/>
+    </div>`).dialog({
+        modal: true,
+        width: 400,
+        appendTo: "#html-loc",
+        position: { my: "top", at: "top", of: $('#html-loc') },
+        buttons: {
+            Add: {
+                text: "Add",
+                id: "adv-inheritance-add-button",
+                click: function () {
+                    convert_parent_permissions(file_obj);
+                    open_advanced_dialog(filepath);          // reload "Advanced"
+                    perm_dialog.attr('filepath', filepath);  // reload "Permissions"
+                    $(this).dialog("close");
+                }
+            },
+            Remove: {
+                text: "Remove",
+                id: "adv-inheritance-remove-button",
+                click: function () {
+                    file_obj.using_permission_inheritance = false;
+                    emitState();
+                    open_advanced_dialog(filepath);
+                    perm_dialog.attr('filepath', filepath);
+                    $(this).dialog("close");
+                }
+            },
+            Cancel: {
+                text: "Cancel",
+                id: "adv-inheritance-cancel-button",
+                click: function () {
+                    $(this).dialog("close");
+                }
             }
-        })
-    }
-})
+        }
+    });
+});
+
 
 
 // listen for changes to "replace..." checkbox:
