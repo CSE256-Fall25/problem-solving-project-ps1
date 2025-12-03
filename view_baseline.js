@@ -391,8 +391,8 @@ $('#adv_perm_inheritance_button').click(function () {
                 id: "adv-inheritance-add-button",
                 click: function () {
                     convert_parent_permissions(file_obj);
-                    open_advanced_dialog(filepath);          // reload "Advanced"
-                    perm_dialog.attr('filepath', filepath);  // reload "Permissions"
+                    open_advanced_dialog(filepath);
+                    perm_dialog.attr('filepath', filepath);
                     $(this).dialog("close");
                 }
             },
