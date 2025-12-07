@@ -204,9 +204,11 @@
 
 
 /* reset button */
-/* #adv_perm_replace_child_div {
-  margin-top: 10px;
-} */
+#adv_perm_replace_child_div {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
 
 #adv_perm_replace_child_button {
   padding: 6px 14px;
@@ -218,23 +220,6 @@
 
 #adv_perm_replace_child_button:hover {
   background-color: #f57c00;
-}
-
-/* inheritance button */
-/* #adv_perm_inheritance_div {
-  margin-top: 10px;
-} */
-
-#adv_perm_inheritance_button {
-  padding: 6px 14px;
-  margin-top: 8px;
-  background-color: #7e57c2;
-  color: white;
-  cursor: pointer;
-}
-
-#adv_perm_inheritance_button:hover {
-  background-color: #6a45ad;
 }
 
 /* effective permissions tab layout */
@@ -359,4 +344,26 @@
 
 #adv_owner_change_button:hover {
     background-color: #1669c1;
+}
+
+/* inheritance checkbox */
+#adv_perm_inheritance_div {
+  margin-top: 10px;
+  padding: 8px 12px;
+  border: 1px solid #dcdcdc;
+  border-radius: 6px;
+  background: #fafafa;
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+#adv_perm_inheritance {
+  margin-top: 2px;
+}
+
+#adv_perm_inheritance_label {
+  font-size: 14px;
+  line-height: 1.4;
+  font-weight: 600;
 }
